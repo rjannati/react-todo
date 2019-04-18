@@ -7,7 +7,11 @@ export default class TaskListApp extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {tasks: []};
+        this.state = {
+            tasks: [],
+            visibleTasks: [],
+            displayCompletedTasks: true, 
+        };
         this.onCreateTask = this.onCreateTask.bind(this);
         this.onTaskChecked = this.onTaskChecked.bind(this);
         this.onTaskDelete = this.onTaskDelete.bind(this);
