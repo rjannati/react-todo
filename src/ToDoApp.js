@@ -59,7 +59,7 @@ export default class ToDoApp extends React.Component {
 
     render() {
         return (
-            <div className="task-list-app">
+            <div className="todod-list-app">
                 <ToDoList tasks={this.state.visibleTasks} 
                     onTaskChecked={this.onTaskChecked} 
                     onTaskDelete={this.onTaskDelete} />

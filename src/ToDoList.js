@@ -10,7 +10,7 @@ const ToDoList = (props) => {
                 onTaskDelete={props.onTaskDelete} />
     });
     
-    return <div className="task-list-container">{tasks}</div>;
+    return <div className="todo-list-container">{tasks}</div>;
 }
 
 export default ToDoList;

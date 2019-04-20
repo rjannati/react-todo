@@ -2,7 +2,7 @@ import React from "react";
 
 const ToDoCompleteFilter = (props) =>  {
     return (
-        <div className="display-complete">
+        <div className="todo-complete-filter-container">
             <label htmlFor="displayCompletedTasks">
             <input type="checkbox" id="displayCompletedTasks" 
                 checked={props.showCompletedTasks}
