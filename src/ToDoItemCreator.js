@@ -1,7 +1,7 @@
 import React from "react";
-import TaskModel from "./TaskModel";
+import ToDoItemModel from "./ToDoItemModel";
 
-export default class TaskCreator extends React.Component  {
+export default class ToDoItemCreator extends React.Component  {
     constructor(props) {
         super(props);
         this.state = {description: ''};
@@ -15,7 +15,7 @@ export default class TaskCreator extends React.Component  {
 
     onSubmit(e) {
         e.preventDefault();
-        var taskModel = new TaskModel(this.state.description);
+        var taskModel = new ToDoItemModel(this.state.description);
         this.props.onCreateTask(taskModel);
         this.setState({description: ""});
     }

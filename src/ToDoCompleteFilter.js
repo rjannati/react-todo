@@ -1,6 +1,6 @@
 import React from "react";
 
-const TaskCompleteFilter = (props) =>  {
+const ToDoCompleteFilter = (props) =>  {
     return (
         <div className="display-complete">
             <label htmlFor="displayCompletedTasks">
@@ -12,4 +12,4 @@ const TaskCompleteFilter = (props) =>  {
     );
 }
 
-export default TaskCompleteFilter;
+export default ToDoCompleteFilter;

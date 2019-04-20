@@ -1,6 +1,6 @@
 import cuid from "cuid";
 
-export default class TaskModel {
+export default class ToDoItemModel {
     constructor(description) {
         this.description = description;
         this.done = false;

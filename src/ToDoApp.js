@@ -1,10 +1,10 @@
 import React from "react";
-import TaskList from "./TaskList";
-import TaskCreator from "./TaskCreator";
+import ToDoList from "./ToDoList";
+import ToDoItemCreator from "./ToDoItemCreator";
 import './App.css';
-import TaskCompleteFilter from "./TaskCompleteFilter";
+import ToDoCompleteFilter from "./ToDoCompleteFilter";
 
-export default class TaskListApp extends React.Component {
+export default class ToDoApp extends React.Component {
 
     constructor(props) {
         super(props);
@@ -22,42 +22,49 @@ export default class TaskListApp extends React.Component {
     onCreateTask(taskModel) {
         let tasks = this.state.tasks;
         tasks.push(taskModel);
-        this.setState({tasks: tasks}, this.updateVisibleTasks);
+        let visibleTasks = this.getVisibleTasks();
+        this.setState({
+            tasks: tasks,
+            visibleTasks: visibleTasks
+        });
     }
 
     onTaskChecked(taskId) {
         let tasks = this.state.tasks;
         let taskToUpdate = tasks.find(v => {return v.id === taskId});
         taskToUpdate.done = !taskToUpdate.done;
-        this.setState({tasks: tasks}, this.updateVisibleTasks);
+        let visibleTasks = this.getVisibleTasks();
+        this.setState({tasks: tasks, visibleTasks: visibleTasks});
     }
 
     onTaskDelete(taskId) {
         let tasks = this.state.tasks;
         let indexOfTaskToDelete = tasks.map((v) => {return v.id}).indexOf(taskId);
         tasks.splice(indexOfTaskToDelete, 1);
-        this.setState({tasks: tasks}, this.updateVisibleTasks);
+        let visibleTasks = this.getVisibleTasks();
+        this.setState({tasks: tasks, visibleTasks: visibleTasks });
     }
 
     taskCompleteFilter_onChange(e) {
-        let checked = e.target.checked;
-        this.setState({showCompletedTasks: checked}, this.updateVisibleTasks);
+        let showCompletedTasks = e.target.checked;
+        let visibleTasks = this.getVisibleTasks(showCompletedTasks);
+        this.setState({showCompletedTasks: showCompletedTasks, visibleTasks: visibleTasks});
 
     }
 
-    updateVisibleTasks() {
-        var tasks = this.state.showCompletedTasks ? this.state.tasks : this.state.tasks.filter((v) => !v.done);
-        this.setState({visibleTasks: tasks});
+    getVisibleTasks(showCompletedTasks) {
+        showCompletedTasks = (showCompletedTasks !== undefined) ? showCompletedTasks : this.state.showCompletedTasks;
+        return showCompletedTasks ? this.state.tasks : this.state.tasks.filter((v) => !v.done);
     }
 
     render() {
         return (
             <div className="task-list-app">
-                <TaskList tasks={this.state.visibleTasks} 
+                <ToDoList tasks={this.state.visibleTasks} 
                     onTaskChecked={this.onTaskChecked} 
                     onTaskDelete={this.onTaskDelete} />
-                <TaskCreator onCreateTask={this.onCreateTask} />
-                <TaskCompleteFilter
+                <ToDoItemCreator onCreateTask={this.onCreateTask} />
+                <ToDoCompleteFilter
                     showCompletedTasks={this.state.showCompletedTasks}
                     onChange={this.taskCompleteFilter_onChange}/>
             </div>
